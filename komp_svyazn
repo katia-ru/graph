@@ -1,0 +1,47 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Jun 12 18:10:09 2013
+
+@author: kate
+"""
+
+ii = 0
+used = []
+graph = []
+in_file = open('test_graph_1', 'r')
+for current in in_file.readlines():
+    graph.append([])
+    word = current.split()
+    for jj in word:
+        graph[ii].append(jj)
+    ii += 1
+    
+    
+vNum = ii
+cc = [0 for i in xrange(vNum)]
+used = [0 for i in xrange(vNum)]
+
+ccNum = 0
+
+def solve(ccNum, cc, used):
+    print ccNum
+    for v in xrange(vNum): 
+        print v
+        print used
+        if (not used[v]):
+            print "we are here"
+            ccNum += 1
+            #new_used = [0 for i in xrange(vNum)]
+            dfs(v,ccNum,cc, used)
+    print ccNum
+    
+            
+def dfs(v,ccNum,cc, used):    
+    used[v] = True
+    cc[v] = ccNum
+    print cc, 4444444444444
+    for nv in xrange(vNum):
+        if (not used[nv]) and graph[v][nv]:
+            dfs(nv, ccNum,cc, used)
+
+solve(ccNum,cc, used)
